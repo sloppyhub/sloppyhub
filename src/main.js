@@ -4,6 +4,10 @@ import Vue from 'vue'
 import Main from './Main'
 import router from './router'
 import store from './store/'
+import VueMaterial from 'vue-material'
+import 'vue-material/dist/vue-material.css'
+
+Vue.use(VueMaterial)
 
 /* eslint-disable no-new */
 new Vue({
