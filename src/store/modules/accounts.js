@@ -23,7 +23,27 @@ export default {
                 return account.userId === userId
             })
         },
-        load({ state, commit }) {
+        add({ commit, dispatch }, { userId, token }) {
+            return new Promise((resolve, reject) => {
+                dispatch('exist', { userId }).then(exist => {
+                    if (exist) {
+                        throw new Error('userId exist')
+                    }
+
+                    commit(type.ADD_ACCOUNT, { userId, token })
+                    dispatch('save').then(() => {
+                        resolve()
+                    })
+                }).catch((err) => {
+                    reject(err)
+                })
+            })
+        },
+        remove({ commit, dispatch }, { userId }) {
+            commit(type.REMOVE_ACCOUNT, { userId })
+            dispatch('save')
+        },
+        load({ commit }) {
             commit(type.SET_ACCOUNTS, { accounts: storage.loadAccounts() })
         },
         save({ state }) {
