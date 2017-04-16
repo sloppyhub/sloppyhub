@@ -18,6 +18,13 @@ export default {
     components: {
         Account,
     },
+    beforeMount() {
+        let $vue = this
+        this.$emit('init', {
+            title: 'Overview',
+            more: [],
+        })
+    },
     mounted() {
         this.loadAccounts()
     },

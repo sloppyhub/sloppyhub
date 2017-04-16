@@ -25,6 +25,21 @@ export default {
         Account,
         CopyDialog,
     },
+    beforeMount() {
+        let $vue = this
+        this.$emit('init', {
+            title: 'Dev',
+            more: [{
+                name: "Copy Date",
+                action() {
+                    $vue.$refs['copy-token'].open({
+                        title: 'Now Date',
+                        content: Date(),
+                    })
+                },
+            }],
+        })
+    },
     data() {
         return {
             service: {
