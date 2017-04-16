@@ -6,7 +6,7 @@
                 <md-button class="md-primary" @click.native="$refs['dlg-token'].open()">get token</md-button>
             </md-card-header>
             <md-card-content>
-                <project v-for="project in projects" :key="project.project" :project="project.project" :services="project.services" />
+                <project v-for="project in allProjects[userId]" :key="project.project" :project="project.project" :services="project.services" />
             </md-card-content>
         </md-card>
         <md-dialog ref="dlg-token">
@@ -20,6 +20,10 @@
 </template>
 <script>
 import Project from '@/components/Project'
+import {
+    mapState,
+    mapActions,
+} from 'vuex'
 
 export default {
     name: 'account',
@@ -30,12 +34,26 @@ export default {
         token: {
             type: String,
         },
-        projects: {
-            type: Array,
-        },
     },
     components: {
         Project,
+    },
+    mounted() {
+        this.loadProjects({
+            userId: this.userId,
+            token: this.token,
+        }).then(() => {}).catch(() => {})
+    },
+    computed: {
+        ...mapState('projects', {
+            allProjects: 'projects',
+        }),
+    },
+
+    methods: {
+        ...mapActions({
+            loadProjects: 'projects/load',
+        })
     },
 }
 </script>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import accounts from './modules/accounts'
+import projects from './modules/projects'
 
 Vue.use(Vuex)
 
@@ -10,5 +11,6 @@ export default new Vuex.Store({
     strict: debug,
     modules: {
         accounts,
+        projects,
     },
 })
