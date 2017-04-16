@@ -6,12 +6,16 @@
         <project :project="project.project" :services="project.services" />
         <h2>components/Account</h2>
         <account :userId="account.userId" :token="account.token" :projects="account.projects" />
+        <h2>components/CopyDialog</h2>
+        <copy-dialog ref="copy-token" />
+        <md-button @click.native="$refs['copy-token'].open({title:'token',content:Date()})">Copy</md-button>
     </div>
 </template>
 <script>
 import Service from '@/components/Service'
 import Project from '@/components/Project'
 import Account from '@/components/Account'
+import CopyDialog from '@/components/CopyDialog'
 
 export default {
     name: 'dev',
@@ -19,6 +23,7 @@ export default {
         Service,
         Project,
         Account,
+        CopyDialog,
     },
     data() {
         return {

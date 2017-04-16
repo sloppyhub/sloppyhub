@@ -3,28 +3,22 @@
         <md-card>
             <md-card-header>
                 <span class="md-title">{{ userId }}</span>
-                <md-button class="md-primary" @click.native="$refs['dlg-token'].open()">get token</md-button>
+                <md-button class="md-primary" @click.native="$refs['dlg-token'].open({title:'Access Token',content:token})">get token</md-button>
             </md-card-header>
             <md-card-content>
                 <project v-for="project in allProjects[userId]" :key="project.project" :project="project.project" :services="project.services" />
             </md-card-content>
         </md-card>
-        <md-dialog ref="dlg-token">
-            <div style="width: 800px;"></div>
-            <md-dialog-title>Access Token</md-dialog-title>
-            <md-dialog-content>
-                <div style="word-wrap: break-word;">{{ token }}</div>
-            </md-dialog-content>
-        </md-dialog>
+        <copy-dialog ref="dlg-token" />
     </div>
 </template>
 <script>
 import Project from '@/components/Project'
+import CopyDialog from '@/components/CopyDialog'
 import {
     mapState,
     mapActions,
 } from 'vuex'
-
 export default {
     name: 'account',
     props: {
@@ -37,6 +31,7 @@ export default {
     },
     components: {
         Project,
+        CopyDialog,
     },
     mounted() {
         this.loadProjects({
