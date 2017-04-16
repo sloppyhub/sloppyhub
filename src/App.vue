@@ -35,9 +35,9 @@ export default {
     data() {
         return {
             // init by init()
-            left_button: 'menu', // 'menu' | 'arrow_back'
-            title: '',
-            more: [], // [{ name:'',action: ()=>{} }]
+            left_button: 'menu', // option 'menu' | 'arrow_back'
+            title: '', // required string
+            more: [], // option [{ name:'',action: ()=>{} }]
 
             // sidenav
             sidenav: [{
