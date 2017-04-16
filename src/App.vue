@@ -113,8 +113,7 @@ export default {
 
 .body .width-limit {
     max-width: 800px;
-    margin: 0 auto;
-    margin-top: 2rem;
+    margin: 2rem auto;
     padding: 0 1rem;
 }
 </style>
