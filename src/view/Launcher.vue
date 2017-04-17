@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="launcher" v-for="launcher in launchers" :key="launcher.name">
-            <md-card>
+            <md-card md-with-hover>
                 <md-card-header>
                     <md-card-header-text class="md-title">{{ launcher.name }}</md-card-header-text>
                     <md-menu md-direction="bottom left">
