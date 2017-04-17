@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import accounts from './modules/accounts'
 import projects from './modules/projects'
+import launcher from './modules/launcher'
 
 Vue.use(Vuex)
 
@@ -12,5 +13,6 @@ export default new Vuex.Store({
     modules: {
         accounts,
         projects,
+        launcher,
     },
 })
