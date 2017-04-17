@@ -40,14 +40,14 @@ export default {
         }).then(() => {}).catch(() => {})
     },
     computed: {
-        ...mapState('projects', {
+        ...mapState('project', {
             allProjects: 'projects',
         }),
     },
 
     methods: {
         ...mapActions({
-            loadProjects: 'projects/load',
+            loadProjects: 'project/load',
         })
     },
 }
