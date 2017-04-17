@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Dev from '@/view/Dev'
 import Overview from '@/view/Overview'
 import Launcher from '@/view/Launcher'
+import LauncherEditor from '@/view/LauncherEditor'
 
 Vue.use(Router)
 
@@ -19,5 +20,9 @@ export default new Router({
         path: '/launcher',
         name: 'launcher',
         component: Launcher,
-    }, ]
+    }, {
+        path: '/launcher/editor/:name',
+        name: 'launcher-editor',
+        component: LauncherEditor,
+    }]
 })

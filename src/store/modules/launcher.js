@@ -33,6 +33,15 @@ export default {
     state: {
         launchers: [], // [{name:"",script:""}] name is unique 
     },
+    getters: {
+        map(state) {
+            let launchersMap = {}
+            state.launchers.forEach(launcher => {
+                launchersMap[launcher.name] = launcher
+            })
+            return launchersMap
+        }
+    },
     actions: {
         save({ state }) {
             storage.saveLaunchers(state.launchers)
