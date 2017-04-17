@@ -55,7 +55,11 @@ export default {
         }
     },
     mounted() {
-        this.name = this.$route.params.name
+        if (this.$route.params.name != undefined) {
+            this.name = this.$route.params.name
+        } else {
+            this.name = ''
+        }
         this.oldName = this.name
         this.loadLaunchers().then(() => {
             let l = this.launchers[this.name]
@@ -73,7 +77,7 @@ export default {
         checkName() {
             this.nameError = ''
             try {
-                if (this.name === '') {
+                if (this.name == '') {
                     throw Error('name is empty')
                 }
                 return true
@@ -94,7 +98,9 @@ export default {
             }
         },
         save() {
-            if (!(this.checkName() && this.format())) {
+            let nameChecked = this.checkName()
+            let formatted = this.format()
+            if (!(nameChecked && formatted)) {
                 return false
             }
 
