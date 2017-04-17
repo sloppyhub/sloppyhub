@@ -21,7 +21,7 @@ export default new Router({
         name: 'launcher',
         component: Launcher,
     }, {
-        path: '/launcher/editor/:name',
+        path: '/launcher/editor/:name?',
         name: 'launcher-editor',
         component: LauncherEditor,
     }]
