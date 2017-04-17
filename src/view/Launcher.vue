@@ -3,7 +3,15 @@
         <div class="launcher" v-for="launcher in launchers" :key="launcher.name">
             <md-card>
                 <md-card-header>
-                    <div class="md-title">{{ launcher.name }}</div>
+                    <md-card-header-text class="md-title">{{ launcher.name }}</md-card-header-text>
+                    <md-menu md-direction="bottom left">
+                        <md-button class="md-icon-button" md-menu-trigger>
+                            <md-icon>more_vert</md-icon>
+                        </md-button>
+                        <md-menu-content>
+                            <md-menu-item @click.native="$router.push('/launcher/editor/'+launcher.name)">Edit</md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
                 </md-card-header>
                 <md-card-content>
                     <pre>{{ launcher.script }}</pre>
