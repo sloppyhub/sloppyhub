@@ -44,6 +44,9 @@ export default {
                 name: 'Overview',
                 path: '/overview',
             }, {
+                name: 'Launcher',
+                path: '/launcher'
+            }, {
                 name: 'Dev',
                 path: '/',
             }, ], // [{name:'',path:''}]
@@ -58,7 +61,6 @@ export default {
 
     methods: {
         init(attr) {
-            console.log(attr)
             if (attr.left_button === 'menu' || attr.left_button === "arrow_back") {
                 this.left_button = attr.left_button
             } else {
@@ -76,9 +78,6 @@ export default {
             } else {
                 this.more = []
             }
-
-            console.log(typeof attr.more)
-            console.log(this.more.length)
         },
         shouldShowLeftButton() {
             return left_button === 'menu' || left_button === 'arrow_back'
