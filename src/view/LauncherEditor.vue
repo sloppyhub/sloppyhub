@@ -13,16 +13,16 @@
                 </md-menu>
             </md-card-header>
             <md-card-content>
-                <md-input-container>
+                <md-input-container :class="{'md-input-invalid':nameError.length > 0}">
                     <label>Name</label>
                     <md-input v-model.trim="name" @focusout.native="checkName" :required="true"></md-input>
+                    <span class="md-error">{{ nameError }}</span>
                 </md-input-container>
-                <span class="error" v-show="typeof nameError === 'string' && nameError.length > 0">{{ nameError }}</span>
-                <md-input-container>
+                <md-input-container :class="{'md-input-invalid':scriptError.length > 0}">
                     <label>Script</label>
                     <md-textarea v-model="script" @focusout.native="format" style="font-family: monospace;"></md-textarea>
+                    <span class="md-error">{{ scriptError }}</span>
                 </md-input-container>
-                <span class="error" v-show="typeof error === 'string' && error.length > 0">{{ error }}</span>
             </md-card-content>
             <md-card-actions>
                 <md-button @click.native="$router.back()">Cancel</md-button>
@@ -50,8 +50,8 @@ export default {
             name: '',
             script: '',
             oldName: '',
-            error: '',
             nameError: '',
+            scriptError: '',
         }
     },
     mounted() {
@@ -87,13 +87,13 @@ export default {
             }
         },
         format() {
-            this.error = ''
+            this.scriptError = ''
             try {
                 let data = JSON.parse(this.script)
                 this.script = JSON.stringify(data, null, '  ')
                 return true
             } catch (err) {
-                this.error = err.toString()
+                this.scriptError = err.toString()
                 return false
             }
         },
