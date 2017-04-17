@@ -29,10 +29,6 @@
                 <md-button class="md-accent" @click.native="done">Done</md-button>
             </md-card-actions>
         </md-card>
-        <pre>{{ name }}</pre>
-        <hr />
-        <pre>{{ script }}</pre>
-        <pre>{{ launchers }}</pre>
     </div>
 </template>
 <script>
