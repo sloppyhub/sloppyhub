@@ -1,9 +1,9 @@
 import storage from '@/storage'
 
 const type = {
-    ADD_ACCOUNT: 'ADD_ACCOUNT',
-    REMOVE_ACCOUNT: 'REMOVE_ACCOUNT',
-    SET_ACCOUNTS: 'SET_ACCOUNTS',
+    ADD: 'ADD',
+    REMOVE: 'REMOVE',
+    SET_ALL: 'SET_ALL',
 }
 
 export default {
@@ -30,7 +30,7 @@ export default {
                         throw new Error('userId exist')
                     }
 
-                    commit(type.ADD_ACCOUNT, { userId, token })
+                    commit(type.ADD, { userId, token })
                     dispatch('save').then(() => {
                         resolve()
                     })
@@ -40,18 +40,18 @@ export default {
             })
         },
         remove({ commit, dispatch }, { userId }) {
-            commit(type.REMOVE_ACCOUNT, { userId })
+            commit(type.REMOVE, { userId })
             dispatch('save')
         },
         load({ commit }) {
-            commit(type.SET_ACCOUNTS, { accounts: storage.loadAccounts() })
+            commit(type.SET_ALL, { accounts: storage.loadAccounts() })
         },
         save({ state }) {
             storage.saveAccounts(state.accounts)
         },
     },
     mutations: {
-        [type.ADD_ACCOUNT](state, { userId, token }) {
+        [type.ADD](state, { userId, token }) {
             let foundAccount = state.accounts.find(account => {
                 return account.userId === userId
             })
@@ -63,12 +63,12 @@ export default {
                 token,
             })
         },
-        [type.REMOVE_ACCOUNT](state, { userId }) {
+        [type.REMOVE](state, { userId }) {
             state.accounts = state.accounts.filter((account) => {
                 return account.userId !== userId
             })
         },
-        [type.SET_ACCOUNTS](state, { accounts }) {
+        [type.SET_ALL](state, { accounts }) {
             if (accounts === undefined) {
                 return
             }
