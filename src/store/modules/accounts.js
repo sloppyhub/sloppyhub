@@ -1,4 +1,4 @@
-import * as storage from '@/storage'
+import storage from '@/storage'
 
 const type = {
     ADD_ACCOUNT: 'ADD_ACCOUNT',

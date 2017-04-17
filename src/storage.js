@@ -1,5 +1,6 @@
 let data = {
-    accounts: {},
+    accounts: [],
+    launchers: [],
 }
 
 let save = () => {
@@ -13,11 +14,21 @@ let load = () => {
     data = JSON.parse(rawData)
 }
 
-export const saveAccounts = (accounts) => {
-    data.accounts = accounts
-    save()
-}
-export const loadAccounts = () => {
-    load()
-    return data.accounts
+export default {
+    saveAccounts: (accounts) => {
+        data.accounts = accounts
+        save()
+    },
+    loadAccounts: () => {
+        load()
+        return data.accounts
+    },
+    saveLaunchers: (launchers) => {
+        data.launchers = launchers
+        save()
+    },
+    loadLaunchers: () => {
+        load()
+        return data.launchers
+    },
 }
