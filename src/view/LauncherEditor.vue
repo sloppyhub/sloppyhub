@@ -94,7 +94,7 @@ export default {
             }
         },
         save() {
-            if (!this.checkName() || !this.format()) {
+            if (!(this.checkName() && this.format())) {
                 return false
             }
 
@@ -115,18 +115,19 @@ export default {
                     this.oldName = name
                 })
             }
-            if (this.launchers[this.name] === undefined) {
+            if (this.launchers[this.name] !== undefined) {
+                this.editLauncher({
+                    name: this.name,
+                    script: this.script,
+                })
+
+            } else {
                 this.addLauncher({
                     name: this.name,
                     script: this.script,
                 })
-                return true
             }
 
-            this.editLauncher({
-                name: this.name,
-                script: this.script,
-            })
             return true
         },
         done() {
