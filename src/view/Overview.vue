@@ -29,13 +29,13 @@ export default {
         this.loadAccounts()
     },
     computed: {
-        ...mapState('accounts', [
+        ...mapState('account', [
             'accounts',
         ]),
     },
     methods: {
         ...mapActions({
-            loadAccounts: 'accounts/load',
+            loadAccounts: 'account/load',
         }),
     },
 

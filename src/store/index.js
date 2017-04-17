@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import accounts from './modules/accounts'
+import account from './modules/account'
 import projects from './modules/projects'
 import launcher from './modules/launcher'
 
@@ -11,7 +11,7 @@ const debug = process.env.NODE_ENV !== 'production'
 export default new Vuex.Store({
     strict: debug,
     modules: {
-        accounts,
+        account,
         projects,
         launcher,
     },
