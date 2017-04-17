@@ -30,8 +30,15 @@ import {
 export default {
     name: 'launcher',
     beforeMount() {
+        let $vue = this
         this.$emit('init', {
             title: 'Launcher',
+            more: [{
+                name: 'Add Launcher',
+                action() {
+                    $vue.$router.push('/launcher/editor')
+                }
+            }]
         })
     },
     mounted() {
