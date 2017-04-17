@@ -10,6 +10,7 @@
                         </md-button>
                         <md-menu-content>
                             <md-menu-item @click.native="$router.push('/launcher/editor/'+launcher.name)">Edit</md-menu-item>
+                            <md-menu-item @click.native="remove({name:launcher.name})">Delete</md-menu-item>
                         </md-menu-content>
                     </md-menu>
                 </md-card-header>
@@ -44,6 +45,7 @@ export default {
     methods: {
         ...mapActions('launcher', {
             loadLaunchers: 'load',
+            remove: 'remove',
         })
     }
 }
