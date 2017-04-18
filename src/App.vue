@@ -47,6 +47,9 @@ export default {
                 name: 'Launcher',
                 path: '/launcher'
             }, {
+                name: 'Settings',
+                path: '/settings'
+            }, {
                 name: 'Dev',
                 path: '/',
             }, ], // [{name:'',path:''}]

@@ -4,6 +4,7 @@ import Dev from '@/view/Dev'
 import Overview from '@/view/Overview'
 import Launcher from '@/view/Launcher'
 import LauncherEditor from '@/view/LauncherEditor'
+import Settings from '@/view/Settings'
 
 Vue.use(Router)
 
@@ -24,5 +25,8 @@ export default new Router({
         path: '/launcher/editor/:name?',
         name: 'launcher-editor',
         component: LauncherEditor,
+    }, {
+        path: '/settings',
+        component: Settings,
     }]
 })
