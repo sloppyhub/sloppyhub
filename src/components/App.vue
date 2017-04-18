@@ -27,7 +27,12 @@
                         <md-table-body>
                             <md-table-row v-for="($value,$key) in app.env" :key="$key">
                                 <md-table-cell>{{ $key }}</md-table-cell>
-                                <md-table-cell>{{ $value }}</md-table-cell>
+                                <md-table-cell>
+                                    <span>{{ $value }}</span>
+                                    <md-button class="md-icon-button" @click.native="$refs['copy-dialog'].open({title:'Env ' + $key,content:$value})">
+                                        <md-icon>content_copy</md-icon>
+                                    </md-button>
+                                </md-table-cell>
                             </md-table-row>
                         </md-table-body>
                     </md-table>
