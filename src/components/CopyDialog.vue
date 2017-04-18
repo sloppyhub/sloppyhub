@@ -5,10 +5,6 @@
             <md-dialog-content>
                 <div style="word-wrap: break-word;">{{ content }}</div>
             </md-dialog-content>
-            <md-dialog-actions>
-                <md-button @click.native="close">Cancel</md-button>
-                <md-button class="md-primary" v-clipboard="content" @success="onsuccess" @error="onerror">Copy</md-button>
-            </md-dialog-actions>
         </width-limited-dialog>
         <md-snackbar ref="toast-copied" md-position="bottom right" md-duration="1800">
             <span>Copied {{ title }}</span>
@@ -17,9 +13,7 @@
 </template>
 <script>
 import Vue from 'vue'
-import VueClipboards from 'vue-clipboards'
-Vue.use(VueClipboards)
-
+import copy from 'copy-to-clipboard'
 import WidthLimitedDialog from '@/components/WidthLimitedDialog'
 
 export default {
@@ -40,17 +34,18 @@ export default {
         }) {
             this.title = title
             this.content = content
-            this.$refs['dialog'].open()
+            this.trycopy()
         },
         close() {
             this.$refs['dialog'].close()
         },
-        onsuccess() {
+        trycopy() {
+            if (!copy(this.content)) {
+                this.$refs['dialog'].open()
+                return
+            }
             this.$refs['toast-copied'].open()
             this.close()
-        },
-        onerror() {
-
         },
     },
 }
