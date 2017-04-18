@@ -1,6 +1,8 @@
 <template>
     <div>
-        <account v-for="account in accounts" :key="account.userId" :userId="account.userId" :token="account.token" />
+        <div v-for="account in accounts" :key="account.userId" style="margin: 1rem 0;">
+            <account :userId="account.userId" :token="account.token" />
+        </div>
     </div>
 </template>
 <script>

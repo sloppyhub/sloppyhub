@@ -1,19 +1,27 @@
 <template>
     <div>
-        <md-card>
+        <md-card md-with-hover>
             <md-card-header>
-                <span class="md-title">{{ userId }}</span>
-                <md-button class="md-primary" @click.native="$refs['dlg-token'].open({title:'Access Token',content:token})">get token</md-button>
+                <md-card-header-text class="md-title">{{ userId }}</md-card-header-text>
+                <md-button class="md-primary" @click.native="$refs['copy-dialog'].open({title:'Access Token',content:token})">Get Token</md-button>
             </md-card-header>
             <md-card-content>
-                <project v-for="project in allProjects[userId]" :key="project.project" :project="project.project" :services="project.services" />
+                <md-list>
+                    <div v-for="(project,index) in allProjects[userId]" :key="project.project">
+                        <md-divider class="md-inset" v-show="index > 0" />
+                        <md-subheader>{{ project.project }}</md-subheader>
+                        <md-list-item v-for="sa in getServiceApps(project)" :key="sa.name">
+                            <app :app="sa.app" :service="sa.service" :hostname="sa.hostname" />
+                        </md-list-item>
+                    </div>
+                </md-list>
             </md-card-content>
         </md-card>
-        <copy-dialog ref="dlg-token" />
+        <copy-dialog ref="copy-dialog" />
     </div>
 </template>
 <script>
-import Project from '@/components/Project'
+import App from '@/components/App'
 import CopyDialog from '@/components/CopyDialog'
 import {
     mapState,
@@ -30,7 +38,7 @@ export default {
         },
     },
     components: {
-        Project,
+        App,
         CopyDialog,
     },
     mounted() {
@@ -48,7 +56,21 @@ export default {
     methods: {
         ...mapActions({
             loadProjects: 'project/load',
-        })
+        }),
+        getServiceApps(project) {
+            let userId = this.userId
+            let sa = []
+            project.services.forEach(service => {
+                service.apps.forEach(app => {
+                    sa.push({
+                        hostname: app.id + "." + service.id + "." + project.project + "." + userId,
+                        service,
+                        app,
+                    })
+                })
+            })
+            return sa
+        },
     },
 }
 </script>
