@@ -9,6 +9,17 @@
         <h2>components/CopyDialog</h2>
         <copy-dialog ref="copy-token" />
         <md-button @click.native="$refs['copy-token'].open({title:'token',content:Date()})">Copy</md-button>
+        <h2>components/WidthLimitedDialog</h2>
+        <width-limited-dialog ref="dialog">
+            <md-dialog-title>Title</md-dialog-title>
+            <md-dialog-content>
+                The content of dialog
+            </md-dialog-content>
+            <md-dialog-actions>
+                <md-button @click.native="$refs['dialog'].close()">Close</md-button>
+            </md-dialog-actions>
+        </width-limited-dialog>
+        <md-button @click.native="$refs['dialog'].open()">Open</md-button>
     </div>
 </template>
 <script>
@@ -16,6 +27,7 @@ import Service from '@/components/Service'
 import Project from '@/components/Project'
 import Account from '@/components/Account'
 import CopyDialog from '@/components/CopyDialog'
+import WidthLimitedDialog from '@/components/WidthLimitedDialog'
 
 export default {
     name: 'dev',
@@ -24,6 +36,7 @@ export default {
         Project,
         Account,
         CopyDialog,
+        WidthLimitedDialog,
     },
     beforeMount() {
         let $vue = this
