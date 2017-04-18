@@ -4,6 +4,7 @@
         <div>
             <div class="md-title">{{ app.id }}
                 <md-chip>{{ service.id }}</md-chip>
+                <md-chip v-show="app.status.length > 0">{{ app.status.join(':') }}</md-chip>
             </div>
             <div class="md-subtitle">{{ app.image }}</div>
         </div>
