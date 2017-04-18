@@ -26,7 +26,7 @@
             </md-dialog-actions>
         </width-limited-dialog>
         <!-- main -->
-        <md-card>
+        <md-card md-with-hover>
             <md-card-header>
                 <md-card-header-text>
                     <span class="md-title">Accounts</span>
