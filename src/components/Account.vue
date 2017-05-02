@@ -9,7 +9,10 @@
                 <md-list>
                     <div v-for="(project,index) in allProjects[userId]" :key="project.project">
                         <md-divider class="md-inset" v-show="index > 0" />
-                        <md-subheader>{{ project.project }}</md-subheader>
+                        <md-subheader>
+                            {{ project.project }}
+                            <md-button class="md-dense md-warn" @click.native="deleteProject({userId,token,projectId:project.project})">delete</md-button>
+                        </md-subheader>
                         <md-list-item v-for="sa in getServiceApps(project)" :key="sa.name">
                             <app :app="sa.app" :service="sa.service" :hostname="sa.hostname" />
                         </md-list-item>
@@ -56,6 +59,7 @@ export default {
     methods: {
         ...mapActions({
             loadProjects: 'project/load',
+            deleteProject: 'project/delete',
         }),
         getServiceApps(project) {
             let userId = this.userId

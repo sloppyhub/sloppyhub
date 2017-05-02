@@ -29,6 +29,22 @@ export default {
                 })
             })
         },
+        delete({ dispatch }, { userId, token, projectId }) {
+            return new Promise((resolve, reject) => {
+                axios.delete('https://api.sloppy.io/v1/apps/' + projectId, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer " + token,
+                    }
+                }).then(resp => {
+                    return dispatch('load', { userId, token })
+                }).catch(err => {
+                    if (err.response) {
+                        reject(err.response.data)
+                    }
+                })
+            })
+        }
     },
     mutations: {
         [type.SET_PROJECTS](state, { userId, projects }) {
